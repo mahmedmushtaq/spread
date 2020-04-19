@@ -7328,7 +7328,7 @@ function Sizzle( selector, context, results, seed ) {
 					// supports it & if we're not changing the context.
 					if ( newContext !== context || !support.scope ) {
 
-						// Capture the context ID, setting it first if necessary
+						// Capture the context ID, settings it first if necessary
 						if ( ( nid = context.getAttribute( "id" ) ) ) {
 							nid = nid.replace( rcssescape, fcssescape );
 						} else {
@@ -7794,7 +7794,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Select is set to empty string on purpose
 			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
+			// settings a boolean content attribute,
 			// since its presence should be enough
 			// https://bugs.jquery.com/ticket/12359
 			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
@@ -13276,7 +13276,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		!support.reliableTrDimensions() && nodeName( elem, "tr" ) ||
 
 		// Fall back to offsetWidth/offsetHeight when value is "auto"
-		// This happens for inline elements with no explicit setting (gh-3571)
+		// This happens for inline elements with no explicit settings (gh-3571)
 		val === "auto" ||
 
 		// Support: Android <=4.1 - 4.3 only
@@ -13318,7 +13318,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 jQuery.extend( {
 
 	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
+	// behavior of getting and settings a style property
 	cssHooks: {
 		opacity: {
 			get: function( elem, computed ) {
@@ -13357,7 +13357,7 @@ jQuery.extend( {
 	},
 
 	// Add in properties whose names you wish to fix before
-	// setting or getting the value
+	// settings or getting the value
 	cssProps: {},
 
 	// Get and set the style property on a DOM Node
@@ -13384,7 +13384,7 @@ jQuery.extend( {
 		// Gets hook for the prefixed version, then unprefixed version
 		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
 
-		// Check if we're setting a value
+		// Check if we're settings a value
 		if ( value !== undefined ) {
 			type = typeof value;
 
@@ -13706,7 +13706,7 @@ Tween.propHooks = {
 };
 
 // Support: IE <=9 only
-// Panic based approach to setting things on disconnected nodes
+// Panic based approach to settings things on disconnected nodes
 Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
 	set: function( tween ) {
 		if ( tween.elem.nodeType && tween.elem.parentNode ) {
@@ -14214,7 +14214,7 @@ jQuery.speed = function( speed, easing, fn ) {
 jQuery.fn.extend( {
 	fadeTo: function( speed, to, easing, callback ) {
 
-		// Show any hidden elements after setting opacity to 0
+		// Show any hidden elements after settings opacity to 0
 		return this.filter( isHiddenWithinTree ).css( "opacity", 0 ).show()
 
 			// Animate to the value specified
@@ -14663,7 +14663,7 @@ jQuery.extend( {
 
 // Support: IE <=11 only
 // Accessing the selectedIndex property
-// forces the browser to respect setting selected
+// forces the browser to respect settings selected
 // on the option
 // The getter ensures a default option is selected
 // when in an optgroup
@@ -14963,7 +14963,7 @@ jQuery.fn.extend( {
 
 			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
 
-			// If set returns undefined, fall back to normal setting
+			// If set returns undefined, fall back to normal settings
 			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
 				this.value = val;
 			}
@@ -17297,7 +17297,7 @@ jQuery.trim = function( text ) {
 // to call noConflict to hide this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
+// declare themselves as anonymous modules, and avoid settings a global if an
 // AMD loader is present. jQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
@@ -32023,7 +32023,7 @@ return jQuery;
      * Creates a compiled template function that can interpolate data properties
      * in "interpolate" delimiters, HTML-escape interpolated data properties in
      * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. Data
-     * properties may be accessed as free variables in the template. If a setting
+     * properties may be accessed as free variables in the template. If a settings
      * object is given, it takes precedence over `_.templateSettings` values.
      *
      * **Note:** In the development build `_.template` utilizes
@@ -40798,7 +40798,7 @@ function createFunctionalComponent (
 }
 
 function cloneAndMarkFunctionalResult (vnode, data, contextVm, options, renderContext) {
-  // #7817 clone node before setting fnContext, otherwise if the node is reused
+  // #7817 clone node before settings fnContext, otherwise if the node is reused
   // (e.g. it was from a cached normal slot) the fnContext causes named slots
   // that should not be matched to match.
   var clone = cloneVNode(vnode);
@@ -42080,7 +42080,7 @@ function callUpdatedHooks (queue) {
  * The queue will be processed after the entire tree has been patched.
  */
 function queueActivatedComponent (vm) {
-  // setting _inactive to false here so that a render function can
+  // settings _inactive to false here so that a render function can
   // rely on checking whether it's in an inactive tree (e.g. router-view)
   vm._inactive = false;
   activatedChildren.push(vm);
@@ -44429,8 +44429,8 @@ function updateAttrs (oldVnode, vnode) {
       setAttr(elm, key, cur);
     }
   }
-  // #4391: in IE9, setting type can reset value for input[type=radio]
-  // #6666: IE/Edge forces progress value down to 1 before setting a max
+  // #4391: in IE9, settings type can reset value for input[type=radio]
+  // #6666: IE/Edge forces progress value down to 1 before settings a max
   /* istanbul ignore if */
   if ((isIE || isEdge) && attrs.value !== oldAttrs.value) {
     setAttr(elm, 'value', attrs.value);
@@ -44479,7 +44479,7 @@ function baseSetAttr (el, key, value) {
   if (isFalsyAttrValue(value)) {
     el.removeAttribute(key);
   } else {
-    // #7138: IE10 & 11 fires input event when setting placeholder on
+    // #7138: IE10 & 11 fires input event when settings placeholder on
     // <textarea>... block the first input event and remove the blocker
     // immediately.
     /* istanbul ignore if */
@@ -45039,7 +45039,7 @@ function model (
   var type = el.attrsMap.type;
 
   {
-    // inputs with type="file" are read only and setting the input's
+    // inputs with type="file" are read only and settings the input's
     // value will throw an error.
     if (tag === 'input' && type === 'file') {
       warn$1(
@@ -45572,7 +45572,7 @@ function updateStyle (oldVnode, vnode) {
   for (name in newStyle) {
     cur = newStyle[name];
     if (cur !== oldStyle[name]) {
-      // ie9 setting to null has no effect, must use empty string
+      // ie9 settings to null has no effect, must use empty string
       setProp(el, name, cur == null ? '' : cur);
     }
   }
@@ -49875,7 +49875,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49895,7 +49895,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

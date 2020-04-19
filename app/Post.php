@@ -28,4 +28,16 @@ class Post extends Model
 
        return  File::delete($this->featured);
     }
+
+    public function tags(){
+        return $this->belongsToMany("App\Tag");
+    }
+
+    public function hasTag($tag_id){
+        return in_array($tag_id,$this->tags->pluck("id")->toArray());
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -18,7 +18,7 @@
                 @foreach($posts as $post)
                     <tr>
                         <td><img src="{{asset($post->featured)}}" alt="Post image" width="40px" height="40px"></td>
-                        <td>{{$post->title}}</td>
+                        <td><a target="_blank" href="{{route('singlepost',$post->slug)}}">{{$post->title}}</a></td>
                         <td>{{$post->category->name}}</td>
                         <td>
                             <div style="display: flex;">
@@ -27,12 +27,14 @@
                             </a>
 
 
+{{--                                @if(auth()->user()->admin)--}}
                             <form method="POST" action="{{route('posts.destroy',$post->id)}}">
                                 @csrf
                                 @method("DELETE")
                                 <button type="submit" style="background-color:transparent;border:none;"><img src="https://img.icons8.com/ultraviolet/40/000000/delete-sign.png" width="12px" height="12px"/></button>
 
                             </form>
+{{--                                    @endif--}}
                             </div>
                         </td>
                     </tr>

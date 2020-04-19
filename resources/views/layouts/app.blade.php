@@ -41,6 +41,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -56,7 +57,19 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
+
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.edit-own-profile') }}">
+                                        My Profile
+                                    </a>
+
+                                    @if(auth()->user()->admin)
+                                    <a class="dropdown-item" href="{{ route('settings.index') }}">
+                                        Web settings
+                                    </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,10 +104,19 @@
                         </li>
 
                         <li class="list-group-item">
+                            <a href="{{route('users.index')}}" class="list-group-item-action">
+                                All Users
+                            </a>
+                        </li>
+
+                        <li class="list-group-item">
                             <a href="{{route('posts.create')}}" class="list-group-item-action">
                                 Create A New Post
                             </a>
                         </li>
+
+
+
 
                         <li class="list-group-item">
                             <a href="{{route('posts.index')}}" class="list-group-item-action">
@@ -116,6 +138,17 @@
                                 All Categories
                             </a>
                         </li>
+
+                        <li class="list-group-item">
+                            <a href="{{route('tags.create')}}" class="list-group-item-action">
+                                Create New Tag
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{{route('tags.index')}}" class="list-group-item-action">
+                                All Tags
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -135,6 +168,7 @@
 
 
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
@@ -148,6 +182,6 @@
         toastr.info("{{Session::get('info')}}");
         @endif
     </script>
-{{--  // @yield('scripts')--}}
+   @yield('scripts')
 </body>
 </html>

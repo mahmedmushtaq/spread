@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">
-                        {{isset($category) ? "Update Category ": "Create A Category"}}
+                        {{isset($category) ? "Update Category ": "Create A New Category"}}
                     </button>
                 </div>
 
@@ -36,3 +36,10 @@
 
 
 @endsection
+
+
+
+
+
+
+

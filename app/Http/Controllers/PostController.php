@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use function GuzzleHttp\Psr7\str;
@@ -22,7 +24,8 @@ class PostController extends Controller
     {
         //
         return view("admin.posts.index",[
-            'posts'=>Post::all()
+            'posts'=>Post::all(),
+
         ]);
     }
 
@@ -41,6 +44,7 @@ class PostController extends Controller
         }
         return view("admin.posts.create",[
             'categories'=>$categories,
+            'tags'=>Tag::all(),
         ]);
     }
 
@@ -61,13 +65,19 @@ class PostController extends Controller
 
 
     //    dd($path);
-       Post::create([
+       $post = Post::create([
             'title'=>$request->title,
             'content'=>$request->content,
             'featured'=>'uploads/posts/'.$featured_new_image,
             'category_id'=>$request->category_id,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'user_id'=>Auth::id(),
+
         ]);
+
+        if($request->tags){
+            $post->tags()->attach($request->tags);
+        }
 
         session()->flash("success","Post Created Successfully");
         return redirect(route("posts.index"));
@@ -97,7 +107,8 @@ class PostController extends Controller
         //
         return view("admin.posts.create",[
             'post'=>$post,
-            'categories'=>Category::all()
+            'categories'=>Category::all(),
+            'tags'=>Tag::all(),
         ]);
 
     }
@@ -113,7 +124,8 @@ class PostController extends Controller
     {
         //
 
-        $data = $request->only(['title','slug','content','category']);
+
+        $data = $request->only(['title','slug','content','category_id']);
 
         if($request->hasFile('featured')) {
             $post->deleteImage();
@@ -121,6 +133,10 @@ class PostController extends Controller
             $featured_new_image = time() . $featured->getClientOriginalName();
             $featured->move('uploads/posts/', $featured_new_image);
             $data['featured'] = "uploads/posts/".$featured_new_image;
+        }
+
+        if($request->tags){
+            $post->tags()->sync($request->tags);
         }
 
         $post->update($data);
@@ -148,7 +164,7 @@ class PostController extends Controller
         }
 
         session()->flash("success","Post Deleted Successfully");
-        return redirect(route("posts.index"));
+        return redirect()->back();
 
     }
 
@@ -168,4 +184,6 @@ class PostController extends Controller
         session("success","Post restored successfully");
         return redirect(route("posts.index"));
     }
+
+
 }

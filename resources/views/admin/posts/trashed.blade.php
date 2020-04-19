@@ -12,8 +12,11 @@
                 <th>Image</th>
                 <th>Title</th>
                 <th>Category</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                @if(auth()->user()->admin)
+                <th>Restore</th>
+
+                  <th>Delete</th>
+                @endif
                 </thead>
                 <tbody>
                 @foreach($posts as $post)
@@ -21,9 +24,10 @@
                         <td><img src="{{asset($post->featured)}}" alt="Post image" width="40px" height="40px"></td>
                         <td>{{$post->title}}</td>
                         <td>{{$post->category->name}}</td>
-
+                        @if(auth()->user()->admin)
                         <td> <a href="{{route('post.restore',$post->id)}}" class="btn btn-xs btn-primary" style="color:white;"> Restore </a>
                         </td>
+
                         <td>
                         <form method="POST" action="{{route('posts.destroy',$post->id)}}">
                             @csrf
@@ -32,6 +36,7 @@
 
                         </form>
                         </td>
+                          @endif
                     </tr>
                 @endforeach
 
